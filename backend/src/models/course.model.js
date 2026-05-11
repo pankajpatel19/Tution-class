@@ -4,7 +4,7 @@ const courseSchema = new Schema(
   {
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
-    class: { type: String, required: true, trim: true },
+    className: { type: String, required: true, trim: true },
     subject: { type: String, required: true, trim: true },
     fees: { type: Number, required: true, trim: true },
     duration: { type: String, required: true, trim: true },

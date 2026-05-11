@@ -14,10 +14,6 @@ router.post("/create", createCourse);
 // get all courses
 router.get("/", getAllCourses);
 // get course by id
-router.get("/:id", getCourseById);
-// update course
-router.put("/:id", updateCourse);
-// delete course
-router.delete("/:id", deleteCourse);
+router.route("/:id").get(getCourseById).put(updateCourse).delete(deleteCourse);
 
 export default router;

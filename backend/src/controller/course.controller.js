@@ -3,12 +3,21 @@ import { asyncWrapper } from "../middleware/AsyncWrapper.js";
 import Course from "../models/course.model.js";
 
 export const createCourse = asyncWrapper(async (req, res) => {
-  const { title, description, subject, fees, duration, schedule, isAvailable } =
-    req.body;
+  const {
+    title,
+    description,
+    className,
+    subject,
+    fees,
+    duration,
+    schedule,
+    isAvailable,
+  } = req.body;
 
   if (
     !title ||
     !description ||
+    !className ||
     !subject ||
     !fees ||
     !duration ||

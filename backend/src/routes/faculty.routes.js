@@ -13,10 +13,10 @@ router.post("/create", createFaculty);
 // get all faculty
 router.get("/", getAllFaculty);
 // get faculty by id
-router.get("/:id", getFacultyById);
-// update faculty
-router.put("/:id", updateFaculty);
-// delete faculty
-router.delete("/:id", deleteFaculty);
+router
+  .route("/:id")
+  .get(getFacultyById)
+  .put(updateFaculty)
+  .delete(deleteFaculty);
 
 export default router;
