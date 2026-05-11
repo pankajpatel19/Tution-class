@@ -2,10 +2,12 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { globelErrorHandler } from "./middleware/globel.error.handler.js";
-import userRouter from "./routes/user.routes.js";
 import { env } from "./utils/env.js";
-import courseRouter from "./routes/course.routes.js";
 
+//routes
+import userRouter from "./routes/user.routes.js";
+import courseRouter from "./routes/course.routes.js";
+import facultyRouter from "./routes/faculty.routes.js";
 const app = express();
 
 // middleware
@@ -22,6 +24,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 // routes
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/course", courseRouter);
+app.use("/api/v1/faculty", facultyRouter);
 
 // error handling middleware
 app.use(globelErrorHandler);
