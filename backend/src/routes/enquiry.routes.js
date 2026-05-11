@@ -6,13 +6,17 @@ import {
   updateEnquiry,
   deleteEnquiry,
 } from "../controller/enquiry.controller.js";
+import { roleAccess } from "../middleware/roleAccess.js";
 const router = Router();
 
-router.post("/", submitEnquiry);
+router
+  .route("/")
+  .get(roleAccess("admin"), getAllEnquiries)
+  .post(roleAccess("student", "admin"), submitEnquiry);
 router
   .route("/:id")
-  .get(getEnquiryById)
-  .put(updateEnquiry)
-  .delete(deleteEnquiry);
+  .get(roleAccess("admin", "student"), getEnquiryById)
+  .put(roleAccess("admin"), updateEnquiry)
+  .delete(roleAccess("admin"), deleteEnquiry);
 
 export default router;

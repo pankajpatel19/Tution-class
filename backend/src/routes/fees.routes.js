@@ -6,11 +6,16 @@ import {
   updateFees,
   deleteFees,
 } from "../controller/fees.controller.js";
+import { roleAccess } from "../middleware/roleAccess.js";
 const router = Router();
 
-router.route("/add").post(addFees);
-router.route("/:id").get(getFeesById).put(updateFees).delete(deleteFees);
+router.post("/add", roleAccess("admin"), addFees);
+router
+  .route("/:id")
+  .get(roleAccess("admin", "student"), getFeesById)
+  .put(roleAccess("admin"), updateFees)
+  .delete(roleAccess("admin"), deleteFees);
 
-router.route("/get").get(getFees);
+router.get("/get", roleAccess("admin", "student"), getFees);
 
 export default router;
