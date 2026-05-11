@@ -7,17 +7,18 @@ import {
   deleteFaculty,
 } from "../controller/faculty.controller.js";
 import { roleAccess } from "../middleware/roleAccess.js";
+import { requireAuth } from "../middleware/auth.js";
 const router = Router();
 
 // create faculty
-router.post("/create", roleAccess("admin"), createFaculty);
+router.post("/create", roleAccess("admin"), requireAuth, createFaculty);
 // get all faculty
-router.get("/", roleAccess("admin", "student"), getAllFaculty);
+router.get("/", roleAccess("admin", "student"), requireAuth, getAllFaculty);
 // get faculty by id
 router
   .route("/:id")
-  .get(roleAccess("admin", "student"), getFacultyById)
-  .put(roleAccess("admin"), updateFaculty)
-  .delete(roleAccess("admin"), deleteFaculty);
+  .get(roleAccess("admin", "student"), requireAuth, getFacultyById)
+  .put(roleAccess("admin"), requireAuth, updateFaculty)
+  .delete(roleAccess("admin"), requireAuth, deleteFaculty);
 
 export default router;

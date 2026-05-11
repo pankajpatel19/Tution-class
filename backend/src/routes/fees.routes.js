@@ -7,15 +7,16 @@ import {
   deleteFees,
 } from "../controller/fees.controller.js";
 import { roleAccess } from "../middleware/roleAccess.js";
+import { requireAuth } from "../middleware/auth.js";
 const router = Router();
 
-router.post("/add", roleAccess("admin"), addFees);
+router.post("/add", roleAccess("admin"), requireAuth, addFees);
 router
   .route("/:id")
-  .get(roleAccess("admin", "student"), getFeesById)
-  .put(roleAccess("admin"), updateFees)
-  .delete(roleAccess("admin"), deleteFees);
+  .get(roleAccess("admin", "student"), requireAuth, getFeesById)
+  .put(roleAccess("admin"), requireAuth, updateFees)
+  .delete(roleAccess("admin"), requireAuth, deleteFees);
 
-router.get("/get", roleAccess("admin", "student"), getFees);
+router.get("/get", roleAccess("admin", "student"), requireAuth, getFees);
 
 export default router;
