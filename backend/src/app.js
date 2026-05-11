@@ -9,6 +9,7 @@ import userRouter from "./routes/user.routes.js";
 import courseRouter from "./routes/course.routes.js";
 import facultyRouter from "./routes/faculty.routes.js";
 import feesRouter from "./routes/fees.routes.js";
+import enquiryRouter from "./routes/enquiry.routes.js";
 const app = express();
 
 // middleware
@@ -27,6 +28,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/course", courseRouter);
 app.use("/api/v1/faculty", facultyRouter);
 app.use("/api/v1/fees", feesRouter);
+app.use("/api/v1/enquiry", enquiryRouter);
 
 // error handling middleware
 app.use(globelErrorHandler);
